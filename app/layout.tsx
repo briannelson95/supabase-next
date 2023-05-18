@@ -7,11 +7,11 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  let session: any
   return (
     <html lang="en">
       <body>
         <SupabaseProvider session={session}>
-          <SupabaseListener serverAccessToken={session?.access_token} />
           {children}
         </SupabaseProvider>
       </body>
