@@ -1,18 +1,18 @@
-import { supabase } from '@/lib/supabaseClient';
-import AuthComponent from '@/components/AuthComponent';
+import { headers, cookies } from 'next/headers'
+import { createServerComponentSupabaseClient } from "@supabase/auth-helpers-nextjs";
 
 export default async function Home() {
-  let { users }: any = await supabase.from('users').select()
+
+  const supabase = createServerComponentSupabaseClient({
+    headers,
+    cookies,
+  })
+
+  const { data: posts } = await supabase.from("posts").select();
 
   return (
-    <main>
-      <h1 className='text-3xl font-bold'>Hello World</h1>
-      <ul className='list-disc list-inside'>
-        {users?.map((item: any, index: any) => (
-          <li key={index}>{item.name}</li>
-        ))}
-      </ul>
-      <AuthComponent />
-    </main>
-  )
+    <>
+      <pre>{JSON.stringify(posts, null, 2)}</pre>
+    </>
+  );
 }

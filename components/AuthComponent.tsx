@@ -1,23 +1,46 @@
 "use client"
+import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs'
+import { useRouter } from 'next/navigation'
+import React, { useEffect, useState } from 'react'
 
-import { Auth } from '@supabase/auth-ui-react'
-import { ThemeSupa } from '@supabase/auth-ui-shared'
-import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
-import Account from './Account'
+export default function AuthComponent() {
+    const [supabase] = useState(() => createBrowserSupabaseClient())
+    const router = useRouter()
 
-const AuthComponent = () => {
-  const session = useSession()
-  const supabase = useSupabaseClient()
+    useEffect(() => {
+        const {
+            data: { subscription }
+        } = supabase.auth.onAuthStateChange(() => {
+            router.refresh()
+        })
 
-  return (
-    <div className="container" style={{ padding: '50px 0 100px 0' }}>
-      {!session ? (
-        <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} theme="dark" />
-      ) : (
-        <Account session={session} />
-      )}
-    </div>
-  )
+        return () => {
+            subscription.unsubscribe()
+        }
+    }, [supabase, router])
+
+    const signUp = () => {
+        supabase.auth.signUp({
+            email: "14nelsonb@gmail.com",
+            password: "sup3rs3cur3"
+        })
+    }
+
+    const signIn = () => {
+        supabase.auth.signInWithPassword({
+            email: "14nelsonb@gmail.com",
+            password: "sup3rs3cur3"
+        })
+    }
+
+    const signOut = () => {
+        supabase.auth.signOut()
+    }
+    return (
+        <div>
+            <button className="border" onClick={signUp}>Sign Up</button>
+            <button className="border" onClick={signIn}>Sign In</button>
+            <button className="border" onClick={signOut}>Sign Out</button>
+        </div>
+    )
 }
-
-export default AuthComponent
