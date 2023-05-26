@@ -19,6 +19,7 @@ export default function Page() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [username, setUsername] = useState<Profiles['username']>('');
+  const [full_name, setFullName] = useState<Profiles['full_name']>('');
   const [website, setWebsite] = useState<Profiles['website']>('');
   const [avatar_url, setAvatarUrl] = useState<Profiles['avatar_url']>('');
 
@@ -57,10 +58,12 @@ export default function Page() {
 
   async function updateProfile({
     username,
+    full_name,
     website,
     avatar_url,
   }: {
     username: Profiles['username'];
+    full_name: Profiles['full_name'];
     website: Profiles['website'];
     avatar_url: Profiles['avatar_url'];
   }) {
@@ -71,6 +74,7 @@ export default function Page() {
       const updates = {
         id: user.id,
         username,
+        full_name,
         website,
         avatar_url,
         updated_at: new Date().toISOString(),
@@ -106,6 +110,15 @@ export default function Page() {
           />
         </div>
         <div>
+          <label htmlFor='fullName'>Full Name</label>
+          <input
+            id='fullName'
+            type='text'
+            value={full_name || ''}
+            onChange={(e) => setFullName(e.target.value)}
+          />
+        </div>
+        <div>
           <label htmlFor='website'>Website</label>
           <input
             id='website'
@@ -118,7 +131,7 @@ export default function Page() {
         <div>
           <button
             className='button primary block'
-            onClick={() => updateProfile({ username, website, avatar_url })}
+            onClick={() => updateProfile({ username, full_name, website, avatar_url })}
             disabled={isLoading}
           >
             {isLoading ? 'Loading ...' : 'Update'}
