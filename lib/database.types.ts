@@ -9,20 +9,6 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      countries: {
-        Row: {
-          id: number
-          name: string
-        }
-        Insert: {
-          id?: number
-          name: string
-        }
-        Update: {
-          id?: number
-          name?: string
-        }
-      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -47,20 +33,6 @@ export interface Database {
           updated_at?: string | null
           username?: string | null
           website?: string | null
-        }
-      }
-      users: {
-        Row: {
-          id: number
-          name: string
-        }
-        Insert: {
-          id?: number
-          name: string
-        }
-        Update: {
-          id?: number
-          name?: string
         }
       }
     }

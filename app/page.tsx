@@ -1,18 +1,36 @@
-import { headers, cookies } from 'next/headers'
-import { createServerComponentSupabaseClient } from "@supabase/auth-helpers-nextjs";
+'use client';
 
-export default async function Home() {
+import { Auth } from '@supabase/auth-ui-react';
+import { ThemeSupa } from '@supabase/auth-ui-shared';
+import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
-  const supabase = createServerComponentSupabaseClient({
-    headers,
-    cookies,
-  })
+export default function Home() {
+  const session = useSession();
+  const supabase = useSupabaseClient();
+  const router = useRouter();
 
-  const { data: posts } = await supabase.from("posts").select();
+  useEffect(() => {
+    if (session) router.push('/account');
+  }, [session, router]);
 
   return (
-    <>
-      <pre>{JSON.stringify(posts, null, 2)}</pre>
-    </>
+    <main className='grid min-h-screen place-items-center'>
+      <div
+        className='container'
+        style={{
+          padding: '50px 0 100px 0',
+        }}
+      >
+        {!session && (
+          <Auth
+            supabaseClient={supabase}
+            appearance={{ theme: ThemeSupa }}
+            theme='dark'
+          />
+        )}
+      </div>
+    </main>
   );
 }

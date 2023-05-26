@@ -204,14 +204,14 @@
 
 "@supabase/auth-helpers-nextjs@^0.6.1":
   version "0.6.1"
-  resolved "https://registry.npmjs.org/@supabase/auth-helpers-nextjs/-/auth-helpers-nextjs-0.6.1.tgz"
+  resolved "https://registry.yarnpkg.com/@supabase/auth-helpers-nextjs/-/auth-helpers-nextjs-0.6.1.tgz#d327099201a55b8225e0f8e642c6a18eccbab9ca"
   integrity sha512-ffDAR4pW2Cosj/CuuGRAhzOFfHtqzdgax7zqRGGyq334gxxPplsmJFGaLPRJ3Z/4mTSIJHyFd6LYdHMN0a+5Bw==
   dependencies:
     "@supabase/auth-helpers-shared" "0.3.4"
 
 "@supabase/auth-helpers-react@^0.3.1":
   version "0.3.1"
-  resolved "https://registry.npmjs.org/@supabase/auth-helpers-react/-/auth-helpers-react-0.3.1.tgz"
+  resolved "https://registry.yarnpkg.com/@supabase/auth-helpers-react/-/auth-helpers-react-0.3.1.tgz#815493a294662c56b83c7dd51692dacd24329342"
   integrity sha512-g3SFv08Dz9FapNif/ZY1b7qKGlMJDyTLSayHBz3kb3FuYxg7aLWgQtydDhm5AGbc0XtvpIBuhGTIOVevwpdosA==
 
 "@supabase/auth-helpers-shared@0.3.4":
