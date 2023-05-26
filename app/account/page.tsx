@@ -32,7 +32,7 @@ export default function Page() {
 
         let { data, error, status } = await supabase
           .from('profiles')
-          .select('username, website, avatar_url')
+          .select('username, full_name, website, avatar_url')
           .eq('id', user.id)
           .single();
 
@@ -42,6 +42,7 @@ export default function Page() {
 
         if (data) {
           setUsername(data.username);
+          setFullName(data.full_name);
           setWebsite(data.website);
           setAvatarUrl(data.avatar_url);
         }
