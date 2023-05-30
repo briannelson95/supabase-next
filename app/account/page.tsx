@@ -22,6 +22,7 @@ export default function Page() {
   const [full_name, setFullName] = useState<Profiles['full_name']>('');
   const [website, setWebsite] = useState<Profiles['website']>('');
   const [avatar_url, setAvatarUrl] = useState<Profiles['avatar_url']>('');
+  const [admin, setAdmin] = useState<Profiles['admin']>(false);
 
   useEffect(() => {
     async function getProfile() {
@@ -32,7 +33,7 @@ export default function Page() {
 
         let { data, error, status } = await supabase
           .from('profiles')
-          .select('username, full_name, website, avatar_url')
+          .select('username, full_name, website, avatar_url, admin')
           .eq('id', user.id)
           .single();
 
@@ -45,6 +46,7 @@ export default function Page() {
           setFullName(data.full_name);
           setWebsite(data.website);
           setAvatarUrl(data.avatar_url);
+          setAdmin(data.admin);
         }
       } catch (error) {
         // alert('Error loading user data!');
@@ -62,11 +64,13 @@ export default function Page() {
     full_name,
     website,
     avatar_url,
+    admin,
   }: {
     username: Profiles['username'];
     full_name: Profiles['full_name'];
     website: Profiles['website'];
     avatar_url: Profiles['avatar_url'];
+    admin: Profiles['admin'];
   }) {
     try {
       setIsLoading(true);
@@ -78,6 +82,7 @@ export default function Page() {
         full_name,
         website,
         avatar_url,
+        admin,
         updated_at: new Date().toISOString(),
       };
 
@@ -97,6 +102,7 @@ export default function Page() {
   return (
     <main className='grid min-h-screen place-items-center'>
       <div className='container grid gap-4'>
+        {admin ? <div className='text-white text-4xl'>Admin View</div> : <div className='text-white text-4xl'>Hello World</div>}
         <div>
           <label htmlFor='email'>Email</label>
           <input id='email' type='text' value={session?.user.email || ''} disabled />
@@ -132,7 +138,7 @@ export default function Page() {
         <div>
           <button
             className='button primary block'
-            onClick={() => updateProfile({ username, full_name, website, avatar_url })}
+            onClick={() => updateProfile({ username, full_name, website, avatar_url, admin })}
             disabled={isLoading}
           >
             {isLoading ? 'Loading ...' : 'Update'}
