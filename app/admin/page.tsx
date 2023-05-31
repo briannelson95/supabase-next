@@ -10,10 +10,11 @@ export default async function page() {
                 {/* <pre>
                     {JSON.stringify(users, null, 2)}
                 </pre> */}
-                <table className="table-auto border">
+                <table className="table-auto">
                     <thead>
                         <th>Username</th>
                         <th>Full Name</th>
+                        <th>Avatar URL</th>
                         <th>Website</th>
                         <th>Admin</th>
                     </thead>
@@ -22,6 +23,7 @@ export default async function page() {
                             <tr key={item.id}>
                                 <td>{item.username}</td>
                                 <td>{item.full_name}</td>
+                                <td>{item.avatar_url}</td>
                                 <td>{item.website}</td>
                                 <td>{item.admin}</td>
                             </tr>
