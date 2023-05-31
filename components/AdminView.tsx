@@ -7,10 +7,11 @@ import {
     useSession,
 } from '@supabase/auth-helpers-react';
 import { Database } from '@/lib/database.types';
+// import supabase from '@/lib/supabaseClient'
 
 type Profiles = Database['public']['Tables']['profiles']['Row'];
 
-export default function AdminView() {
+export default function AdminView({children}: any) {
     const supabase = useSupabaseClient<Database>();
     const user = useUser();
     const session = useSession();
@@ -53,7 +54,7 @@ export default function AdminView() {
 
     return (
         <div>
-            {admin ? 'AdminView' : 'Not admin'}
+            {admin ? <div>Admin View <div>{children}</div></div> : 'Not admin'}
         </div>
     )
 }
