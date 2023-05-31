@@ -8,6 +8,7 @@ import {
 } from '@supabase/auth-helpers-react';
 import { Database } from '@/lib/database.types';
 import { useRouter } from 'next/navigation'
+import Link from 'next/link';
 
 type Profiles = Database['public']['Tables']['profiles']['Row'];
 
@@ -102,7 +103,13 @@ export default function Page() {
   return (
     <main className='grid min-h-screen place-items-center'>
       <div className='container grid gap-4'>
-        {admin ? <div className='text-white text-4xl'>Admin View</div> : <div className='text-white text-4xl'>Hello World</div>}
+        {admin 
+          ? <div>
+              <div className='text-white text-4xl'>Admin View</div> 
+              <Link href={'/admin'}>Link</Link>
+            </div>
+          : <div className='text-white text-4xl'>Hello World</div>
+        }
         <div>
           <label htmlFor='email'>Email</label>
           <input id='email' type='text' value={session?.user.email || ''} disabled />

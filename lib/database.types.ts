@@ -26,7 +26,6 @@ export interface Database {
           updated_at?: string | null
           username?: string | null
           website?: string | null
-          admin: boolean | null
         }
         Update: {
           avatar_url?: string | null
@@ -35,7 +34,6 @@ export interface Database {
           updated_at?: string | null
           username?: string | null
           website?: string | null
-          admin: boolean | null
         }
       }
     }
