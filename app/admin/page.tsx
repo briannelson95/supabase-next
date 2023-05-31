@@ -21,11 +21,11 @@ export default async function page() {
                     <tbody>
                         {users?.map((item: any) => (
                             <tr key={item.id}>
-                                <td className="border px-8 py-4">{item.username}</td>
-                                <td className="border px-8 py-4">{item.full_name}</td>
-                                <td className="border px-8 py-4">{item.avatar_url}</td>
-                                <td className="border px-8 py-4">{item.website}</td>
-                                <td className="border px-8 py-4">{item.admin}</td>
+                                <td className="border p-1">{item.username}</td>
+                                <td className="border p-1">{item.full_name}</td>
+                                <td className="border p-1">{item.avatar_url}</td>
+                                <td className="border p-1">{item.website}</td>
+                                <td className="border p-1">{item.admin}</td>
                             </tr>
                         ))}
                     </tbody>
