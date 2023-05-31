@@ -25,7 +25,7 @@ export default async function page() {
                                 <td className="border p-1">{item.full_name}</td>
                                 <td className="border p-1"><a href={item.avatar_url} target="_blank" rel="noreferrer" className="text-lime-500">{item.avatar_url}</a></td>
                                 <td className="border p-1">{item.website}</td>
-                                <td className="border p-1">{item.admin}</td>
+                                <td className="border p-1">{item.admin ? "True" : "False"}</td>
                             </tr>
                         ))}
                     </tbody>
