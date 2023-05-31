@@ -7,9 +7,29 @@ export default async function page() {
         <main>
             Protected Page
             <AdminView>
-                <pre>
+                {/* <pre>
                     {JSON.stringify(users, null, 2)}
-                </pre>
+                </pre> */}
+                <table className="table-auto">
+                    <thead>
+                        <th>Username</th>
+                        <th>Full Name</th>
+                        <th>Avatar URL</th>
+                        <th>Website</th>
+                        <th>Admin</th>
+                    </thead>
+                    <tbody>
+                        {users?.map((item: any) => (
+                            <tr key={item.id}>
+                                <td>{item.username}</td>
+                                <td>{item.full_name}</td>
+                                <td>{item.avatar_url}</td>
+                                <td>{item.website}</td>
+                                <td>{item.admin}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </AdminView>
         </main>
     )
