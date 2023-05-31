@@ -106,7 +106,7 @@ export default function Page() {
         {admin 
           ? <div>
               <div className='text-white text-4xl'>Admin View</div> 
-              <Link href={'/admin'}>Link</Link>
+              <Link href={'/admin'} className='px-2 py-1 bg-white text-black border rounded-lg'>Link</Link>
             </div>
           : <div className='text-white text-4xl'>Hello World</div>
         }
