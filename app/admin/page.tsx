@@ -23,7 +23,7 @@ export default async function page() {
                             <tr key={item.id}>
                                 <td className="border p-1">{item.username}</td>
                                 <td className="border p-1">{item.full_name}</td>
-                                <td className="border p-1">{item.avatar_url}</td>
+                                <td className="border p-1"><a href={item.avatar_url} target="_blank" rel="noreferrer" className="text-lime-500">{item.avatar_url}</a></td>
                                 <td className="border p-1">{item.website}</td>
                                 <td className="border p-1">{item.admin}</td>
                             </tr>
